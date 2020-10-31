@@ -24,6 +24,10 @@ const Pedido = sequelize.define("pedido", {
     idProduto:{
         allowNull: true,
         type: Sequelize.INTEGER
+    },
+    precoVenda:{
+        allowNull: true,
+        type: Sequelize.INTEGER
     }
 });
 
