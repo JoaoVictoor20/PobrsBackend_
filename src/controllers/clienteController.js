@@ -5,10 +5,9 @@ exports.Insert = (req, res, next) => {
     const nome = req.body.nome;
     const endereco = req.body.end;
     const email = req.body.email;
-    const password = req.body.password;
     const telefone = req.body.telefone;
     const cpf = req.body.cpf;
-    const cep = req.body.cep;
+    const cidade = req.body.cidade;
 
     Cliente.create({//colocando dentro do BD retirado do corpo da pagina
         // fazer aqui validação da qntd de numero do CPF
@@ -17,9 +16,8 @@ exports.Insert = (req, res, next) => {
         email: email,
         telefone: telefone,
         cpf: cpf,
-        cep: cep,
-        password: password,
-
+        cidade: cidade,
+       
     })
 
         .then(cliente => {
@@ -63,10 +61,9 @@ exports.Update = (req, res, next) => {
     const nome = req.body.nome;
     const endereco = req.body.end;
     const email = req.body.email;
-    const password = req.body.password;
     const telefone = req.body.telefone;
     const cpf = req.body.cpf;
-    const cep = req.body.cep;
+    const cidade = req.body.cidade;
 
     Cliente.findByPk(id)
         .then(cliente => {
@@ -75,10 +72,9 @@ exports.Update = (req, res, next) => {
                     nome: nome,
                     end: endereco,
                     email: email,
-                    password: password,
                     telefone: telefone,
                     cpf: cpf,
-                    cep: cep
+                    cidade: cidade
 
                 },
                 {
@@ -115,33 +111,3 @@ exports.Delete = (req, res, next) => {
         })
         .catch(error => next(error));
 };
-
-exports.SelectDetailLogin= (req, res, next) => {
-    console.log("Dentro do select detail login")
-    const email = req.body.email;
-    console.log("Email do body = " + email)
-    const pass = req.body.password;
-    console.log("Senha do body: " + pass)
-    //const idLogado = null;
-    const { Op } = require("sequelize");
-
-    const clienteLogado = Cliente.findOne({ where:{
-    [Op.and]: [ 
-        {email: email},
-        {password: pass}
-    ]}})
-    .then(logo => {
-        if(clienteLogado === null){
-            console.log("NOT FOUND");
-        } else {
-            console.log(logo instanceof Cliente);
-            console.log(logo.id);
-            console.log(email);
-            console.log(pass);
-            const idLogado = logo.id;
-            console.log("ID DE QUEM LOGOU = " + idLogado);
-            res.status(status.OK).send(logo);
-            return idLogado; 
-        }
-    }).catch(error => next (error));
-}

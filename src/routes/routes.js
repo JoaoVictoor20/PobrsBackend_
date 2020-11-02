@@ -5,7 +5,6 @@ const ProdutoController = require('../controllers/produtoController');
 const router = express.Router();
 
 router.post('/cadastro/clientes', ClienteController.Insert);
-
 router.get('/clientes', ClienteController.SelectAll);
 router.get('/clientes/:id', ClienteController.SelectDetail);
 router.put('/atualizarCliente/:id', ClienteController.Update);

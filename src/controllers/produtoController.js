@@ -13,10 +13,10 @@ exports.Insert = (req, res, next) => {
     Produto.create({
         
         nome: nome,
-        precoVenda: precoVenda,
         ingredientes: ingredientes,
+        precoVenda: precoVenda,
         id: id,
-        qtdPedido : qtdPedido,
+        qtdPedido : qtdPedido
     })
 
         .then(produto => {

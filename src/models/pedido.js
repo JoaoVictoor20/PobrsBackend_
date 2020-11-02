@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = require('../database/database.js');
+const sequelize = require ('../database/database.js');
 
 const Cliente = require('./cliente');
 const Produto = require('./produto');
