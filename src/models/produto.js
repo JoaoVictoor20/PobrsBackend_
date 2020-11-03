@@ -3,7 +3,6 @@ const Sequelize = require('sequelize');
 const sequelize = require('../database/database.js');
 
 const Produto = sequelize.define("produto", {
-    
     idProduto:{
         allowNull: false,
         autoIncrement: true,
@@ -14,30 +13,49 @@ const Produto = sequelize.define("produto", {
         allowNull: false,
         type: Sequelize.STRING(100),
         validate: {
-            len: [3, 100]        
+            len: [3, 100]
         }
     },
-    ingredientes:{// Pode-se trocar por catProduto, é mais uma categorização do que um código em si
+    ingredientes :{
         allowNull: false,
-        type: Sequelize.STRING(),
+        type: Sequelize.STRING(100),
         validate: {
             len: [3, 100]
         }
+    },
+    precoCusto:{
+        allowNull: false,
+        type: Sequelize.FLOAT()
     },
     precoVenda:{
         allowNull: false,
         type: Sequelize.FLOAT(),
         validate:{
-            len: [0, 100]       
+            len: [0, 100]
         }
     },
-    qtdEstoque:{
+    catProduto:{
         allowNull: false,
         type: Sequelize.INTEGER(),
         validate: {
             len: [0, 9999]
         }
-    }  
+    },
+    descricao:{
+        allowNull: true,
+        type: Sequelize.STRING(500),
+        validate: {
+            len: [5, 250]
+        }
+    }
+},
+{
+    indexes: [
+        {
+            unique: true,
+            fields: ['nome']
+        }
+    ]
 });
 
 module.exports = Produto;

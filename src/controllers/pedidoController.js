@@ -4,10 +4,10 @@ const status = require('http-status');
 const Cliente = require('../models/cliente');
 const TabelaProduto = require('../models/produto');
 
-exports.Insert = async (req, res, next) => {
+exports.Insert =  (req, res, next) => {
     const qtdPedido = req.body.qtdPedido;
     const idCliente = req.body.idCliente;
-    const idProduto = req.body.idProduto;
+    const idProduto = req.params.idProduto;
     const precoVenda = req.body.precoVenda
     
 

@@ -5,9 +5,10 @@ exports.Insert = (req, res, next) => {
     const nome = req.body.nome;
     const endereco = req.body.end;
     const email = req.body.email;
+    const password = req.body.password;
     const telefone = req.body.telefone;
     const cpf = req.body.cpf;
-    const cidade = req.body.cidade;
+    const cep = req.body.cep;
 
     Cliente.create({//colocando dentro do BD retirado do corpo da pagina
         // fazer aqui validação da qntd de numero do CPF
@@ -16,8 +17,9 @@ exports.Insert = (req, res, next) => {
         email: email,
         telefone: telefone,
         cpf: cpf,
-        cidade: cidade,
-       
+        cep: cep,
+        password: password,
+
     })
 
         .then(cliente => {
@@ -61,9 +63,10 @@ exports.Update = (req, res, next) => {
     const nome = req.body.nome;
     const endereco = req.body.end;
     const email = req.body.email;
+    const password = req.body.password;
     const telefone = req.body.telefone;
     const cpf = req.body.cpf;
-    const cidade = req.body.cidade;
+    const cep = req.body.cep;
 
     Cliente.findByPk(id)
         .then(cliente => {
@@ -72,9 +75,10 @@ exports.Update = (req, res, next) => {
                     nome: nome,
                     end: endereco,
                     email: email,
+                    password: password,
                     telefone: telefone,
                     cpf: cpf,
-                    cidade: cidade
+                    cep: cep
 
                 },
                 {
