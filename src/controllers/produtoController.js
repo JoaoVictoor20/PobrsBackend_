@@ -4,19 +4,21 @@ const status = require('http-status');
 exports.Insert = (req, res, next) => {
     const nome = req.body.nome;
     const ingredientes = req.body.ingredientes;
+    const precoCusto = req.body.precoCusto;
     const precoVenda = req.body.precoVenda;
-    const id = req.body.id;
-    const qtdPedido = req.body.qtdPedido
+    const catProduto = req.body.catProduto;
+    const descricao = req.body.descricao;
   
     
 
     Produto.create({
         
         nome: nome,
-        precoVenda: precoVenda,
         ingredientes: ingredientes,
-        id: id,
-        qtdPedido : qtdPedido,
+        precoCusto: precoCusto,
+        precoVenda: precoVenda,
+        catProduto : catProduto,
+        descricao: descricao
     })
 
         .then(produto => {
@@ -40,7 +42,47 @@ exports.SelectAll = (req, res, next) => {
         .catch(error => next(error));
 };
 
+exports.SelectDetail = (req, res, next) => {
+    const idProduto = req.params.idProduto;//pegando o ID da URL
+
+    Produto.findByPk(idProduto)
+        .then(produto => {
+            if (produto) {
+                res.status(status.OK).send(produto);
+            } else {
+                res.status(status.NOT_FOUND).send();
+            }
+        })
+        .catch(error => next (error));
+};
+
 exports.Update = (req, res, next) => {
     const id = req.body.id; 
     const qtdPedido = req.body.qtdPedido; 
+};
+
+//Update usado para contagem de estoque ao comprar - TODO ERRADO AINDA A ARRUMAR
+exports.Update = (req, res, next) => {
+    const id = req.body.id; //vem pelo body pois será chamado atraves do pedido, que informa pelo body o id que recebe
+    const qtdPedido = req.body.qtdPedido; //pq a qtd pedido q ele recebe
+    const qtdEstoque = 
+
+    Produto.findByPk(id)
+        .then(produto => {
+            if(produto) {
+                produto.Update({
+                    qtdEstoque: qtdEstoque
+                },
+                {
+                    where: {id: id}
+                })
+                .then(() => {
+                    res.status(status.OK).send();
+                })
+                .catch(error => next(error));
+            } else {
+                res.status(status.NOT_FOUND).send();
+            }
+        })
+        .catch(error => next(error));
 };

@@ -115,33 +115,3 @@ exports.Delete = (req, res, next) => {
         })
         .catch(error => next(error));
 };
-
-exports.SelectDetailLogin= (req, res, next) => {
-    console.log("Dentro do select detail login")
-    const email = req.body.email;
-    console.log("Email do body = " + email)
-    const pass = req.body.password;
-    console.log("Senha do body: " + pass)
-    //const idLogado = null;
-    const { Op } = require("sequelize");
-
-    const clienteLogado = Cliente.findOne({ where:{
-    [Op.and]: [ 
-        {email: email},
-        {password: pass}
-    ]}})
-    .then(logo => {
-        if(clienteLogado === null){
-            console.log("NOT FOUND");
-        } else {
-            console.log(logo instanceof Cliente);
-            console.log(logo.id);
-            console.log(email);
-            console.log(pass);
-            const idLogado = logo.id;
-            console.log("ID DE QUEM LOGOU = " + idLogado);
-            res.status(status.OK).send(logo);
-            return idLogado; 
-        }
-    }).catch(error => next (error));
-}
