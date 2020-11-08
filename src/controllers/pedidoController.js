@@ -53,4 +53,19 @@ exports.SelectDetail = (req, res, next) => {
             }
         })
         .catch(error => next (error));
-};
+}; // ta errado pq to pegando como se eu quisesse somente 1 pedido em especifico
+
+exports.SelectPedidoCliente = (req, res, next) => {
+    const id = req.params.idCliente;
+    const {Op} = require("sequelize");
+
+    Pedido.findAll({where: {idCliente: id}})
+    .then(pedido => {
+        if(pedido) {
+            res.status(status.OK).send(pedido);
+        } else {
+            res.status(status.NOT_FOUND).send();
+        }
+    })
+    .catch(error => next (error));
+}

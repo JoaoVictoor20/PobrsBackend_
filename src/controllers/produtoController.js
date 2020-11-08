@@ -2,23 +2,22 @@ const Produto = require('../models/produto');
 const status = require('http-status');
 
 exports.Insert = (req, res, next) => {
-    const nome = req.body.nome;
-    const ingredientes = req.body.ingredientes;
+    const nome = req.body.nome;    
     const precoCusto = req.body.precoCusto;
     const precoVenda = req.body.precoVenda;
     const catProduto = req.body.catProduto;
     const descricao = req.body.descricao;
-  
+    const linkImg = req.body.linkImg;
     
 
     Produto.create({
         
         nome: nome,
-        ingredientes: ingredientes,
         precoCusto: precoCusto,
         precoVenda: precoVenda,
         catProduto : catProduto,
-        descricao: descricao
+        descricao: descricao,
+        linkImg: linkImg
     })
 
         .then(produto => {
