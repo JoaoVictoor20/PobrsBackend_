@@ -22,6 +22,7 @@ router.get('/pedidos/:idCliente', PedidoController.SelectPedidoCliente);
 router.get('/produtos', ProdutoController.SelectAll);
 router.post('/cadastro/produtos', ProdutoController.Insert);
 router.get('/produtos/:id', ProdutoController.SelectDetail);
+router.delete('/deleteProduto/:idProduto', ProdutoController.Delete);
 
 // ROTA DE TESTE CRIAÇÃO DO CARRINHO
 router.post('/carrinho', CarrinhoController.Insert); // Como cair aqui e voltar pra tela de compras rapidamente

@@ -55,6 +55,26 @@ exports.SelectDetail = (req, res, next) => {
         .catch(error => next (error));
 };
 
+exports.Delete = (req, res, next) => {
+    const idProduto = req.params.idProduto;
+
+    Produto.findByPk(idProduto)
+        .then(produto => {
+            if (produto) {
+                produto.destroy({
+                    where: {idProduto: idProduto}
+                })
+                .then(() => {
+                    res.status(status.OK).send();
+                })
+                .catch(error => next(error));
+            } else {
+                res.status(status.NOT_FOUND).send();
+            }
+        })
+        .catch(error => next(error));
+}
+
 exports.Update = (req, res, next) => {
     const id = req.body.id; 
     const qtdPedido = req.body.qtdPedido; 
