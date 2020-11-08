@@ -4,7 +4,7 @@ const sequelize = require('../database/database.js');
 const Cliente = require('./cliente.js');
 
 //ID do pedido, Numero do pedido, Data do pedido, Qtd, 
-const Pedido = sequelize.define("pedidos", {
+const Pedido2 = sequelize.define("pedidos2", {
     idPedido:{
         allowNull: false,
         autoIncrement: true,
@@ -38,13 +38,10 @@ const Pedido = sequelize.define("pedidos", {
     }
 });
 
-Cliente.hasMany(Pedido, {
+Cliente.hasMany(Pedido2, {
     foreignKey: 'idCliente'
   });
 
-Pedido.belongsTo(Cliente);
+Pedido2.belongsTo(Cliente);
 
-//Pedido.belongsTo(Cliente, {foreignKey: 'idCliente', allowNull: true});
-//Pedido.belongsTo(Produto, {foreignKey: 'idProduto', allowNull: false});
-
-module.exports = Pedido;
+module.exports = Pedido2;

@@ -25,7 +25,10 @@ const Produto = sequelize.define("produto", {
     },
     precoCusto:{
         allowNull: false,
-        type: Sequelize.FLOAT()
+        type: Sequelize.FLOAT(),
+        validate:{
+            len: [0, 100]
+        }
     },
     precoVenda:{
         allowNull: false,

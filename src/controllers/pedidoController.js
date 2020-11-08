@@ -5,18 +5,18 @@ const Cliente = require('../models/cliente');
 const TabelaProduto = require('../models/produto');
 
 exports.Insert =  (req, res, next) => {
-    const qtdPedido = req.body.qtdPedido;
-    const idCliente = req.body.idCliente;
-    const idProduto = req.params.idProduto;
-    const precoVenda = req.body.precoVenda
+    const nomeProd = req.body.nomeProd;
+    const precoVenda = req.body.precoVenda;
+    const catProduto = req.body.catProduto;
+    const idCliente = parseInt(req.params.idCliente);
     
 
     Pedido.create({
        
-        qtdPedido: qtdPedido,
+        nomeProd: nomeProd,
+        precoVenda: precoVenda,
+        catProduto: catProduto,
         idCliente: idCliente,
-        idProduto: idProduto,
-        precoVenda: precoVenda
 
     })
 
@@ -29,4 +29,28 @@ exports.Insert =  (req, res, next) => {
         })
 
         .catch(error => next(error));
+};
+
+exports.SelectAll = (req, res, next) => {
+    Pedido.findAll()
+        .then(pedido => {
+            if(pedido) {
+                res.status(status.OK).send(pedido);
+            }
+        })
+        .catch(error => next(error));
+}
+
+exports.SelectDetail = (req, res, next) => {
+    const id = req.params.idCliente;//pegando o ID da URL
+
+    Pedido.findByPk(id)
+        .then(pedido => {
+            if (pedido) {
+                res.status(status.OK).send(pedido);
+            } else {
+                res.status(status.NOT_FOUND).send();
+            }
+        })
+        .catch(error => next (error));
 };

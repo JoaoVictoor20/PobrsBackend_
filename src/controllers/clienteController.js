@@ -5,7 +5,6 @@ exports.Insert = (req, res, next) => {
     const nome = req.body.nome;
     const endereco = req.body.end;
     const email = req.body.email;
-    const password = req.body.password;
     const telefone = req.body.telefone;
     const cpf = req.body.cpf;
     const cep = req.body.cep;
@@ -18,7 +17,6 @@ exports.Insert = (req, res, next) => {
         telefone: telefone,
         cpf: cpf,
         cep: cep,
-        password: password,
 
     })
 
@@ -63,7 +61,6 @@ exports.Update = (req, res, next) => {
     const nome = req.body.nome;
     const endereco = req.body.end;
     const email = req.body.email;
-    const password = req.body.password;
     const telefone = req.body.telefone;
     const cpf = req.body.cpf;
     const cep = req.body.cep;
@@ -75,7 +72,6 @@ exports.Update = (req, res, next) => {
                     nome: nome,
                     end: endereco,
                     email: email,
-                    password: password,
                     telefone: telefone,
                     cpf: cpf,
                     cep: cep

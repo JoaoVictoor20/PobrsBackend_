@@ -15,7 +15,9 @@ router.get('/clientes/:id', ClienteController.SelectDetail);
 router.put('/atualizarCliente/:id', ClienteController.Update);
 router.delete('/clientes/:id', ClienteController.Delete);
 //Pedido
-router.post('/pedidos', PedidoController.Insert);
+router.post('/novoPedido/:idCliente', PedidoController.Insert);
+router.get('/meusPedidos', PedidoController.SelectAll);
+router.get('/pedidos/:idCliente', PedidoController.SelectDetail);
 //Produto
 router.get('/produtos', ProdutoController.SelectAll);
 router.post('/cadastro/produtos', ProdutoController.Insert);
