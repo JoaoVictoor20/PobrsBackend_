@@ -2,23 +2,22 @@ const Produto = require('../models/produto');
 const status = require('http-status');
 
 exports.Insert = (req, res, next) => {
-    const nome = req.body.nome;
-    const ingredientes = req.body.ingredientes;
+    const nome = req.body.nome;    
     const precoCusto = req.body.precoCusto;
     const precoVenda = req.body.precoVenda;
     const catProduto = req.body.catProduto;
     const descricao = req.body.descricao;
-  
+    const linkImg = req.body.linkImg;
     
 
     Produto.create({
         
         nome: nome,
-        ingredientes: ingredientes,
         precoCusto: precoCusto,
         precoVenda: precoVenda,
         catProduto : catProduto,
-        descricao: descricao
+        descricao: descricao,
+        linkImg: linkImg
     })
 
         .then(produto => {
@@ -55,6 +54,26 @@ exports.SelectDetail = (req, res, next) => {
         })
         .catch(error => next (error));
 };
+
+exports.Delete = (req, res, next) => {
+    const idProduto = req.params.idProduto;
+
+    Produto.findByPk(idProduto)
+        .then(produto => {
+            if (produto) {
+                produto.destroy({
+                    where: {idProduto: idProduto}
+                })
+                .then(() => {
+                    res.status(status.OK).send();
+                })
+                .catch(error => next(error));
+            } else {
+                res.status(status.NOT_FOUND).send();
+            }
+        })
+        .catch(error => next(error));
+}
 
 exports.Update = (req, res, next) => {
     const id = req.body.id; 

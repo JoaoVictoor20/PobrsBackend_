@@ -4,7 +4,7 @@ const sequelize = require('../database/database.js');
 
 const Cliente = sequelize.define("cliente", {
     
-    id:{
+    idCliente:{
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -32,13 +32,6 @@ const Cliente = sequelize.define("cliente", {
         },
         unique: true 
     },
-    password: {
-        allowNull: false,
-        type: Sequelize.STRING(16),
-        validate:{
-            min: 6
-        },
-      },
     telefone:{ 
         allowNull: true,
         type: Sequelize.STRING(30),
@@ -66,7 +59,7 @@ const Cliente = sequelize.define("cliente", {
     indexes: [
         {
             unique: true,
-            fields: ['email', 'password', 'cpf']
+            fields: ['email', 'cpf']
         }
     ]
 });

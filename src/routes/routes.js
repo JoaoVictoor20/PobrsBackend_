@@ -15,11 +15,14 @@ router.get('/clientes/:id', ClienteController.SelectDetail);
 router.put('/atualizarCliente/:id', ClienteController.Update);
 router.delete('/clientes/:id', ClienteController.Delete);
 //Pedido
-router.post('/pedidos', PedidoController.Insert);
+router.post('/novoPedido/:idCliente', PedidoController.Insert);
+router.get('/meusPedidos', PedidoController.SelectAll);
+router.get('/pedidos/:idCliente', PedidoController.SelectPedidoCliente);
 //Produto
 router.get('/produtos', ProdutoController.SelectAll);
 router.post('/cadastro/produtos', ProdutoController.Insert);
 router.get('/produtos/:id', ProdutoController.SelectDetail);
+router.delete('/deleteProduto/:idProduto', ProdutoController.Delete);
 
 // ROTA DE TESTE CRIAÇÃO DO CARRINHO
 router.post('/carrinho', CarrinhoController.Insert); // Como cair aqui e voltar pra tela de compras rapidamente

@@ -16,16 +16,12 @@ const Produto = sequelize.define("produto", {
             len: [3, 100]
         }
     },
-    ingredientes :{
-        allowNull: false,
-        type: Sequelize.STRING(100),
-        validate: {
-            len: [3, 100]
-        }
-    },
     precoCusto:{
         allowNull: false,
-        type: Sequelize.FLOAT()
+        type: Sequelize.FLOAT(),
+        validate:{
+            len: [0, 100]
+        }
     },
     precoVenda:{
         allowNull: false,
@@ -46,6 +42,13 @@ const Produto = sequelize.define("produto", {
         type: Sequelize.STRING(500),
         validate: {
             len: [5, 250]
+        }
+    },
+    linkImg:{
+        allowNull: false,
+        type: Sequelize.STRING(900),
+        validate: {
+            len: [20, 900]
         }
     }
 },
