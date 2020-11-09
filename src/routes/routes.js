@@ -18,14 +18,11 @@ router.delete('/clientes/:id', ClienteController.Delete);
 router.post('/novoPedido/:idCliente', PedidoController.Insert);
 router.get('/meusPedidos', PedidoController.SelectAll);
 router.get('/pedidos/:idCliente', PedidoController.SelectPedidoCliente);
+router.delete('/pedidos/:idPedido', PedidoController.DeletePedido);
 //Produto
 router.get('/produtos', ProdutoController.SelectAll);
 router.post('/cadastro/produtos', ProdutoController.Insert);
 router.get('/produtos/:id', ProdutoController.SelectDetail);
 router.delete('/deleteProduto/:idProduto', ProdutoController.Delete);
-
-// ROTA DE TESTE CRIAÇÃO DO CARRINHO
-router.post('/carrinho', CarrinhoController.Insert); // Como cair aqui e voltar pra tela de compras rapidamente
-//router.get('/:id/Meucarrinho', CarrinhoController.SelectDetail); //- -------------- TIRAR ----------- 
 
 module.exports = router;
