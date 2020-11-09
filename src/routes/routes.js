@@ -22,7 +22,7 @@ router.delete('/pedidos/:idPedido', PedidoController.DeletePedido);
 //Produto
 router.get('/produtos', ProdutoController.SelectAll);
 router.post('/cadastro/produtos', ProdutoController.Insert);
-router.get('/produtos/:id', ProdutoController.SelectDetail);
+router.get('/produtos/:idProduto', ProdutoController.SelectDetail);
 router.delete('/deleteProduto/:idProduto', ProdutoController.Delete);
 
 module.exports = router;

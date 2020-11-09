@@ -42,7 +42,7 @@ exports.SelectAll = (req, res, next) => {
 };
 
 exports.SelectDetail = (req, res, next) => {
-    const idProduto = req.params.id;//pegando o ID da URL
+    const idProduto = req.params.idProduto;//pegando o ID da URL
 
     Produto.findByPk(idProduto)
         .then(produto => {
