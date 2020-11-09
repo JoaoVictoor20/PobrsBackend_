@@ -2,14 +2,12 @@ const express = require('express');
 const ClienteController = require ('../controllers/clienteController.js');
 const PedidoController = require ('../controllers/pedidoController');
 const ProdutoController = require('../controllers/produtoController');
-//teste carrinho
-const CarrinhoController = require('../controllers/carrinhoController');
+
 const Cliente = require('../models/cliente.js');
 const router = express.Router();
 
 //Cliente
 router.post('/cadastro/clientes', ClienteController.Insert);
-
 router.get('/clientes', ClienteController.SelectAll);
 router.get('/clientes/:id', ClienteController.SelectDetail);
 router.put('/atualizarCliente/:id', ClienteController.Update);
