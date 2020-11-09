@@ -55,6 +55,26 @@ exports.SelectDetail = (req, res, next) => {
         .catch(error => next (error));
 }; // ta errado pq to pegando como se eu quisesse somente 1 pedido em especifico
 
+exports.DeletePedido = (req, res, next) => {
+    const idPedido = req.params.idPedido;
+
+    Pedido.findByPk(idPedido)
+        .then(pedido => {
+            if (pedido) {
+                pedido.destroy({
+                    where: {idPedido: idPedido}
+                })
+                .then(() => {
+                    res.status(status.OK).send();
+                })
+                .catch(error => next(error));
+            } else {
+                res.status(status.NOT_FOUND).send();
+            }
+        })
+        .catch(error => next(error));
+};
+
 exports.SelectPedidoCliente = (req, res, next) => {
     const id = req.params.idCliente;
     const {Op} = require("sequelize");
